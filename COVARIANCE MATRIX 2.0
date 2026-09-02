@@ -1,0 +1,46 @@
+x = [ 12.1, 13.2,15.6, 17.2, 18.8, 10.3, 11.7, 16.4]
+y = [ 48, 59, 32, 18, 41, 32, 31, 30]
+z = [ 101, 171, 112, 132, 140, 112, 151, 96]
+
+x_mean = sum(x) / len(x)
+y_mean = sum(y) / len(y)
+z_mean = sum(z) / len(z)
+
+x_var = 0
+for i in range(len(x)):
+    x_var = x_var + ((x[i] - x_mean)**2)
+x_var = x_var / (len(x) -1) 
+
+y_var = 0
+for i in range(len(y)):
+    y_var = y_var + ((y[i] - y_mean)**2)
+y_var = y_var / (len(y) -1) 
+
+z_var = 0
+for i in range(len(z)):
+    z_var = z_var + ((z[i] - z_mean)**2)
+z_var = z_var / (len(z) -1) 
+
+covxy = 0
+for i in range(len(x)):
+    covxy = covxy + ((x[i] - x_mean) * (y[i] - y_mean))
+covxy = covxy / (len(x) - 1 )
+
+covyz = 0
+for i in range(len(y)):
+    covyz = covyz + ((y[i] - y_mean) * (z[i] - z_mean))
+covyz = covyz / (len(y) - 1 )
+
+covxz = 0
+for i in range(len(y)):
+    covxz = covxz + ((x[i] - x_mean) * (z[i] - z_mean))
+covxz = covxz / (len(y) - 1 )
+
+covmatrix = [
+    [x_var, covxy, covxz],
+    [covxy, y_var, covyz],
+    [covxz, covyz, z_var]
+]
+
+print (covmatrix)
+
